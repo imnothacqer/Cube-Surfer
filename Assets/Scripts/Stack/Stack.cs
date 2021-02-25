@@ -54,5 +54,27 @@ public class Stack : MonoBehaviour
             Destroy(gameObject, 2f);
 
         }
+
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pool"))
+        {
+            DestroyMe();
+        }
+
+        if (other.gameObject.CompareTag("Magnet"))
+        {
+            Destroy(other.gameObject);
+            _stackBrain.SetMagnet();
+        }
+    }
+
+    private void DestroyMe()
+    {
+        _stackBrain.CollectedList.Remove(gameObject);
+        Destroy(gameObject);
     }
 }

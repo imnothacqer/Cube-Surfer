@@ -7,6 +7,8 @@ TagManager:
   - Collectable
   - Obstacle
   - Collected
+  - Pool
+  - Magnet
   layers:
   - Default
   - TransparentFX
