@@ -19,12 +19,40 @@ public class Stack : MonoBehaviour
         {
             other.gameObject.tag = "Untagged";
             _stackBrain.playerBrain.OnCollectStack();
+
+            /**
+             * Spawn Effect
+             */
+            GameObject _effect = Instantiate(
+                _stackBrain.CollectStackEffect,
+                other.transform.position,
+                Quaternion.identity
+            );
+            Destroy(_effect, 2f);
             
             Destroy(other.gameObject);
             
             GameObject _collected = Instantiate(_stackBrain.CollectedStackPrefab);
             _collected.transform.position = _stackBrain.GetSpawnPoint();
             _collected.transform.parent = _stackBrain.transform;
+            _stackBrain.CollectedList.Add(_collected);
+            
+        }
+
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            _stackBrain.playerBrain.OnLostStack();
+
+            _stackBrain.CollectedList.Remove(gameObject);
+            
+            Stack _stack = GetComponent<Stack>();
+            Rigidbody _rb = GetComponent<Rigidbody>();
+
+            _rb.constraints = RigidbodyConstraints.None;
+            transform.parent = null;
+            Destroy(_stack);
+            Destroy(gameObject, 2f);
+
         }
     }
 }

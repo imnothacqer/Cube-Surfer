@@ -7,7 +7,9 @@ public class StackBrain : MonoBehaviour
 {
     public PlayerBrain playerBrain;
     public float stepSize;
+    
     public GameObject CollectedStackPrefab;
+    public GameObject CollectStackEffect;
 
     public List<GameObject> CollectedList;
 

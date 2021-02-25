@@ -21,10 +21,17 @@ public class PlayerBrain : MonoBehaviour
     private void Start()
     {
         OnCollectStack += JumpPlayer;
+
+        OnLostStack += LostMessage;
     }
 
     public void JumpPlayer()
     {
         PlayerBodyTransform.position += Vector3.up * jumpSize; 
+    }
+
+    public void LostMessage()
+    {
+        Debug.Log("LostStack");
     }
 }
