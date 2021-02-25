@@ -13,6 +13,7 @@ public class StackBrain : MonoBehaviour
     [Header("Referances")]
     public GameObject CollectedStackPrefab;
     public GameObject CollectStackEffect;
+    public GameObject CollectDiamondEffect;
 
     [Header("Magnet Settings")]
     public bool isHaveMagnet;
@@ -54,18 +55,7 @@ public class StackBrain : MonoBehaviour
     {
         return playerBrain.PlayerBodyTransform.position + (Vector3.down * stepSize);
     }
-
-    private void OnDrawGizmos()
-    {
-        if (isHaveMagnet)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(magnetStack.transform.position, magnetRange);
-            
-            Gizmos.DrawWireCube(magnetStack.transform.position, magnetStack.transform.localScale);
-        }
-    }
-
+    
     public void SetMagnet()
     {
         if (isHaveMagnet)
@@ -103,5 +93,14 @@ public class StackBrain : MonoBehaviour
         _collected.transform.position = GetSpawnPoint();
         _collected.transform.parent = transform;
         CollectedList.Add(_collected);
+    }
+
+    public bool IsHaveStack()
+    {
+        if (CollectedList.Count > 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -70,6 +70,13 @@ public class Stack : MonoBehaviour
             Destroy(other.gameObject);
             _stackBrain.SetMagnet();
         }
+
+        if (other.gameObject.CompareTag("Diamond"))
+        {
+            GameObject _effect = Instantiate(_stackBrain.CollectDiamondEffect, other.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+            Destroy(_effect, 2f);
+        }
     }
 
     private void DestroyMe()
