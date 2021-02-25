@@ -33,4 +33,10 @@ public class PlayerMovement : MonoBehaviour
             transform.Translate(mov * Time.deltaTime);
         }
     }
+
+    public void StartStop(bool _value)
+    {
+        canMove = _value;
+        canSlide = _value;
+    }
 }
