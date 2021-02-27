@@ -8,9 +8,13 @@ using UnityEngine;
 public class Stack : MonoBehaviour
 {
     private StackBrain _stackBrain;
+    private GameObject trail;
+    public int id;
     private void Start()
     {
         _stackBrain = GetComponentInParent<StackBrain>();
+        trail = transform.GetChild(0).gameObject;
+        id = _stackBrain.CollectedList.IndexOf(gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -44,6 +48,8 @@ public class Stack : MonoBehaviour
             _stackBrain.playerBrain.OnLostStack();
 
             _stackBrain.CollectedList.Remove(gameObject);
+
+            //_stackBrain._targetGroup.m_Targets[1].target = _stackBrain.CollectedList[id - 1].transform;
             
             Stack _stack = GetComponent<Stack>();
             Rigidbody _rb = GetComponent<Rigidbody>();
@@ -57,9 +63,8 @@ public class Stack : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ground"))
         {
-            _stackBrain.TrailEffect.SetActive(true);
-            _stackBrain.TrailEffect.transform.position = transform.position + (Vector3.down * 0.2f);
-            _stackBrain.TrailEffect.transform.parent = transform;
+            trail.SetActive(true);
+            //_stackBrain._targetGroup.m_Targets[1].target = transform;
         }
 
     }
@@ -68,9 +73,8 @@ public class Stack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            _stackBrain.TrailEffect.GetComponent<TrailRenderer>().Clear();
-            _stackBrain.TrailEffect.transform.parent = null;
-            _stackBrain.TrailEffect.SetActive(false);
+            //trail.SetActive(false);
+            
         }
     }
 
@@ -78,7 +82,6 @@ public class Stack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pool"))
         {
-            _stackBrain.TrailEffect.transform.parent = null;
             DestroyMe();
         }
 

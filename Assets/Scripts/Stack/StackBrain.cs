@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,12 +10,14 @@ public class StackBrain : MonoBehaviour
     [Header("General Settings")]
     public PlayerBrain playerBrain;
     public float stepSize;
+
+    [Header("Camera Group Referance")] 
+    public CinemachineTargetGroup _targetGroup;
     
     [Header("Referances")]
     public GameObject CollectedStackPrefab;
     public GameObject CollectStackEffect;
     public GameObject CollectDiamondEffect;
-    public GameObject TrailEffect;
 
     [Header("Magnet Settings")]
     public bool isHaveMagnet;
