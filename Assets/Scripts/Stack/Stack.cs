@@ -55,13 +55,30 @@ public class Stack : MonoBehaviour
 
         }
 
-        
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _stackBrain.TrailEffect.SetActive(true);
+            _stackBrain.TrailEffect.transform.position = transform.position + (Vector3.down * 0.2f);
+            _stackBrain.TrailEffect.transform.parent = transform;
+        }
+
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _stackBrain.TrailEffect.GetComponent<TrailRenderer>().Clear();
+            _stackBrain.TrailEffect.transform.parent = null;
+            _stackBrain.TrailEffect.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Pool"))
         {
+            _stackBrain.TrailEffect.transform.parent = null;
             DestroyMe();
         }
 

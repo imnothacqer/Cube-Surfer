@@ -14,6 +14,7 @@ public class StackBrain : MonoBehaviour
     public GameObject CollectedStackPrefab;
     public GameObject CollectStackEffect;
     public GameObject CollectDiamondEffect;
+    public GameObject TrailEffect;
 
     [Header("Magnet Settings")]
     public bool isHaveMagnet;
