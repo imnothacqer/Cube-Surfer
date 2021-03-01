@@ -46,10 +46,10 @@ public class Stack : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             _stackBrain.playerBrain.OnLostStack();
+            
+            _stackBrain._targetGroup.m_Targets[1].target = _stackBrain.CollectedList[id + 1].transform;
 
             _stackBrain.CollectedList.Remove(gameObject);
-
-            //_stackBrain._targetGroup.m_Targets[1].target = _stackBrain.CollectedList[id - 1].transform;
             
             Stack _stack = GetComponent<Stack>();
             Rigidbody _rb = GetComponent<Rigidbody>();
@@ -64,7 +64,7 @@ public class Stack : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             trail.SetActive(true);
-            //_stackBrain._targetGroup.m_Targets[1].target = transform;
+            _stackBrain._targetGroup.m_Targets[1].target = transform;
         }
 
     }
@@ -82,6 +82,7 @@ public class Stack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pool"))
         {
+            //_stackBrain._targetGroup.m_Targets[1].target = _stackBrain.CollectedList[id + 1].transform;
             DestroyMe();
         }
 
